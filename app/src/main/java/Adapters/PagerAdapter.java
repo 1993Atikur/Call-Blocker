@@ -5,16 +5,10 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-
 import java.util.ArrayList;
-
-import Tabs.BlockList;
-import Tabs.History;
 
 public class PagerAdapter extends FragmentStatePagerAdapter {
 
-    int numberoftabs;
-    Context context;
     ArrayList<String>Title=new ArrayList<>();
     ArrayList<Fragment>uFragment=new ArrayList<>();
 
