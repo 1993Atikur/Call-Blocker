@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/background"
+    android:padding="30dp"
+    >
+
+
+    <EditText
+        android:id="@+id/editname"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:hint="Name"
+        android:textStyle="italic"
+        android:layout_alignParentLeft="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:inputType="phone"
+        android:textStyle="italic"
+        android:hint="Numbers"
+        android:id="@+id/editnumber"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/editname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv"
+        android:layout_below="@id/editnumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <Button
+        android:textAllCaps="false"
+        android:id="@+id/save"
+        android:background="@drawable/buttonback"
+        android:layout_below="@+id/tv"
+        android:text="Save"
+        android:layout_alignParentLeft="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:textAllCaps="false"
+        android:id="@+id/cancel"
+        android:text="Cancel"
+        android:background="@drawable/buttonback"
+        android:layout_below="@id/tv"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+</RelativeLayout>

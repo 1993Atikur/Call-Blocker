@@ -1003,6 +1003,7 @@ drawable avd_show_password
 drawable background
 drawable block
 drawable buttonback
+drawable checkbox
 drawable delete
 drawable design_bottom_navigation_item_background
 drawable design_fab_background
@@ -1010,7 +1011,6 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
-drawable divider
 drawable history
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
@@ -1077,18 +1077,22 @@ id blocking
 id bottom
 id buttonPanel
 id callHistorylist
+id cancel
 id cancel_action
+id cancels
 id center
 id center_horizontal
 id center_vertical
 id chains
 id checkBox
 id checkbox
+id choose
 id chronometer
 id clearList
 id clip_horizontal
 id clip_vertical
 id collapseActionView
+id contactpager
 id container
 id content
 id contentPanel
@@ -1107,6 +1111,8 @@ id dimensions
 id direct
 id disableHome
 id edit_query
+id editname
+id editnumber
 id end
 id end_padder
 id enterAlways
@@ -1158,6 +1164,7 @@ id normal
 id notification_background
 id notification_main_column
 id notification_main_column_container
+id okay
 id outline
 id packed
 id parallax
@@ -1172,6 +1179,7 @@ id radio
 id right
 id right_icon
 id right_side
+id save
 id save_image_matrix
 id save_non_transition_alpha
 id save_scale_type
@@ -1218,6 +1226,7 @@ id submit_area
 id switchbutton
 id tabMode
 id tablayout
+id tablayoutCall
 id tag_transition_group
 id tag_unhandled_key_event_manager
 id tag_unhandled_key_listeners
@@ -1242,6 +1251,7 @@ id transition_layout_save
 id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
+id tv
 id uniform
 id unlabeled
 id up
@@ -1301,6 +1311,8 @@ layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_main
 layout blocklist
+layout calllog
+layout contact
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
 layout design_layout_snackbar
@@ -1316,6 +1328,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_password_icon
 layout history
+layout insertnumber
 layout mtrl_layout_snackbar
 layout mtrl_layout_snackbar_include
 layout notification_action
@@ -1333,6 +1346,7 @@ layout notification_template_media
 layout notification_template_media_custom
 layout notification_template_part_chronometer
 layout notification_template_part_time
+layout phonestorage
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
@@ -1394,6 +1408,7 @@ string path_password_eye
 string path_password_eye_mask_strike_through
 string path_password_eye_mask_visible
 string path_password_strike_through
+string phone
 string rejected_calls
 string search_menu_title
 string status_bar_notification_info_overflow

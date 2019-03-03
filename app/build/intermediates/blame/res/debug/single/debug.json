@@ -468,6 +468,10 @@
         "source": "/home/pallob/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/fd8fdb30a5716c62f59539af66ce1ee1/res/drawable-hdpi-v4/abc_btn_check_to_on_mtrl_000.png"
     },
     {
+        "merged": "/mnt/Software/Software/Project/CallBlocker/app/build/intermediates/res/merged/debug/layout_calllog.xml.flat",
+        "source": "/mnt/Software/Software/Project/CallBlocker/app/src/main/res/layout/calllog.xml"
+    },
+    {
         "merged": "/mnt/Software/Software/Project/CallBlocker/app/build/intermediates/res/merged/debug/drawable_abc_ic_search_api_material.xml.flat",
         "source": "/home/pallob/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/fd8fdb30a5716c62f59539af66ce1ee1/res/drawable/abc_ic_search_api_material.xml"
     },
@@ -592,6 +596,10 @@
         "source": "/home/pallob/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/fd8fdb30a5716c62f59539af66ce1ee1/res/anim/abc_slide_out_top.xml"
     },
     {
+        "merged": "/mnt/Software/Software/Project/CallBlocker/app/build/intermediates/res/merged/debug/drawable_buttonback.xml.flat",
+        "source": "/mnt/Software/Software/Project/CallBlocker/app/src/main/res/drawable/buttonback.xml"
+    },
+    {
         "merged": "/mnt/Software/Software/Project/CallBlocker/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_notification_bg_low_normal.9.png.flat",
         "source": "/home/pallob/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/cd2feaf3505b092fe0d006ddc8bd3449/res/drawable-xhdpi-v4/notification_bg_low_normal.9.png"
     },
@@ -630,6 +638,10 @@
     {
         "merged": "/mnt/Software/Software/Project/CallBlocker/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_abc_ic_star_black_48dp.png.flat",
         "source": "/home/pallob/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/fd8fdb30a5716c62f59539af66ce1ee1/res/drawable-xxxhdpi-v4/abc_ic_star_black_48dp.png"
+    },
+    {
+        "merged": "/mnt/Software/Software/Project/CallBlocker/app/build/intermediates/res/merged/debug/layout_contact.xml.flat",
+        "source": "/mnt/Software/Software/Project/CallBlocker/app/src/main/res/layout/contact.xml"
     },
     {
         "merged": "/mnt/Software/Software/Project/CallBlocker/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_design_ic_visibility_off.png.flat",
@@ -690,6 +702,10 @@
     {
         "merged": "/mnt/Software/Software/Project/CallBlocker/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
         "source": "/home/pallob/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/fd8fdb30a5716c62f59539af66ce1ee1/res/drawable-xxxhdpi-v4/abc_ic_menu_copy_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "/mnt/Software/Software/Project/CallBlocker/app/build/intermediates/res/merged/debug/drawable_checkbox.xml.flat",
+        "source": "/mnt/Software/Software/Project/CallBlocker/app/src/main/res/drawable/checkbox.xml"
     },
     {
         "merged": "/mnt/Software/Software/Project/CallBlocker/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_text_select_handle_left_mtrl_light.png.flat",
@@ -1026,10 +1042,6 @@
     {
         "merged": "/mnt/Software/Software/Project/CallBlocker/app/build/intermediates/res/merged/debug/drawable-v21_abc_dialog_material_background.xml.flat",
         "source": "/home/pallob/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/fd8fdb30a5716c62f59539af66ce1ee1/res/drawable-v21/abc_dialog_material_background.xml"
-    },
-    {
-        "merged": "/mnt/Software/Software/Project/CallBlocker/app/build/intermediates/res/merged/debug/drawable_divider.xml.flat",
-        "source": "/mnt/Software/Software/Project/CallBlocker/app/src/main/res/drawable/divider.xml"
     },
     {
         "merged": "/mnt/Software/Software/Project/CallBlocker/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_btn_switch_to_on_mtrl_00012.9.png.flat",
@@ -1412,10 +1424,6 @@
         "source": "/home/pallob/.gradle/caches/transforms-1/files-1.1/design-28.0.0.aar/ab7b4a3e3e4bcd07e10f466dd6cb873c/res/drawable-v21/avd_hide_password.xml"
     },
     {
-        "merged": "/mnt/Software/Software/Project/CallBlocker/app/build/intermediates/res/merged/debug/drawable_buttonback.png.flat",
-        "source": "/mnt/Software/Software/Project/CallBlocker/app/src/main/res/drawable/buttonback.png"
-    },
-    {
         "merged": "/mnt/Software/Software/Project/CallBlocker/app/build/intermediates/res/merged/debug/layout_notification_template_lines_media.xml.flat",
         "source": "/home/pallob/.gradle/caches/transforms-1/files-1.1/support-media-compat-28.0.0.aar/090e6503a111540bc066db67772f0215/res/layout/notification_template_lines_media.xml"
     },
@@ -1696,6 +1704,10 @@
         "source": "/home/pallob/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/fd8fdb30a5716c62f59539af66ce1ee1/res/color-v23/abc_color_highlight_material.xml"
     },
     {
+        "merged": "/mnt/Software/Software/Project/CallBlocker/app/build/intermediates/res/merged/debug/layout_phonestorage.xml.flat",
+        "source": "/mnt/Software/Software/Project/CallBlocker/app/src/main/res/layout/phonestorage.xml"
+    },
+    {
         "merged": "/mnt/Software/Software/Project/CallBlocker/app/build/intermediates/res/merged/debug/drawable_abc_seekbar_track_material.xml.flat",
         "source": "/home/pallob/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/fd8fdb30a5716c62f59539af66ce1ee1/res/drawable/abc_seekbar_track_material.xml"
     },
@@ -1882,6 +1894,10 @@
     {
         "merged": "/mnt/Software/Software/Project/CallBlocker/app/build/intermediates/res/merged/debug/layout-v16_notification_template_custom_big.xml.flat",
         "source": "/home/pallob/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/cd2feaf3505b092fe0d006ddc8bd3449/res/layout-v16/notification_template_custom_big.xml"
+    },
+    {
+        "merged": "/mnt/Software/Software/Project/CallBlocker/app/build/intermediates/res/merged/debug/layout_insertnumber.xml.flat",
+        "source": "/mnt/Software/Software/Project/CallBlocker/app/src/main/res/layout/insertnumber.xml"
     },
     {
         "merged": "/mnt/Software/Software/Project/CallBlocker/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_ic_menu_cut_mtrl_alpha.png.flat",

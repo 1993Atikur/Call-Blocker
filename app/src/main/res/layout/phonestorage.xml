@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="1dp"
+    android:orientation="vertical"
+    android:weightSum="12"
+    android:background="@android:color/holo_orange_dark"
+    >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="12"
+
+        >
+        <android.support.design.widget.TabLayout
+            android:layout_weight="11"
+            android:id="@+id/tablayoutCall"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:tabMode="fixed"
+            app:tabIndicatorColor="@color/red"
+            app:tabTextColor="@color/red"
+            app:tabSelectedTextColor="@android:color/white"
+            />
+
+
+        <android.support.v4.view.ViewPager
+            android:layout_weight="1"
+            android:id="@+id/contactpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_weight="11"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="2dp"
+        >
+        <Button
+            android:background="@drawable/buttonback"
+            android:textAllCaps="false"
+            android:text="Ok"
+            android:id="@+id/okay"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            />
+        <Button
+            android:background="@drawable/buttonback"
+            android:textAllCaps="false"
+            android:id="@+id/cancels"
+            android:text="Cancel"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+
+</LinearLayout>

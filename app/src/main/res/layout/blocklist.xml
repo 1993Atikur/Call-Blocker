@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="20dp"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
     android:paddingBottom="20dp"
     >
 
@@ -19,35 +19,50 @@
         android:layout_alignParentRight="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="3"
+        android:weightSum="4"
         android:id="@+id/line1"
-        android:divider="@drawable/divider"
-        android:showDividers="middle"
         android:background="@drawable/background"
 
         >
         <CheckBox
-
+            android:textSize="11sp"
+            android:gravity="center_vertical"
+            android:background="@drawable/checkbox"
             android:layout_weight="1"
             android:id="@+id/checkBox"
             android:text="@string/all_calls"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent" />
 
         <Button
             android:background="@drawable/buttonback"
+            android:textSize="11sp"
+            android:text="@string/phone"
+            android:textAllCaps="false"
+            android:id="@+id/choose"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+          />
+
+        <Button
+            android:background="@drawable/buttonback"
+            android:textSize="11sp"
             android:text="@string/number"
+            android:textAllCaps="false"
             android:id="@+id/addNumber"
             android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent" />
 
         <Button
+            android:background="@drawable/buttonback"
+            android:textSize="11sp"
+            android:textAllCaps="false"
             android:id="@+id/clearList"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/buttonback"
             android:text="@string/clear" />
 
     </LinearLayout>
@@ -57,6 +72,7 @@
         android:paddingTop="10dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
+        android:paddingBottom="10dp"
         android:background="@drawable/listback"
         android:id="@+id/blockList"
         android:layout_below="@+id/line1"

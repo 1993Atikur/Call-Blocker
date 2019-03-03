@@ -7,8 +7,8 @@
     android:layout_height="match_parent"
     android:paddingTop="20dp"
     android:paddingBottom="20dp"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp">
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp">
 
 
     <LinearLayout
@@ -33,10 +33,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
+            android:textColor="@android:color/black"
             android:text="@string/rejected_calls" />
 
         <Button
+            android:textAllCaps="false"
             android:background="@drawable/buttonback"
+            android:textSize="11sp"
             android:layout_weight="3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

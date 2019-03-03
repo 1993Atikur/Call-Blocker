@@ -6,15 +6,16 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+
+import UserDataModel.UserData;
+
 public class Holder extends SQLiteOpenHelper {
 
     public static final String DataBaseName="Mydatabase.db";
     public static final String TableName="Mytable";
-    public static final String COL_1="Id";
-    public static final String COL_2="RunState";
-    public static final String COL_3="CheckState";
-    public static final String COL_4="Name";
-    public static final String COL_5="Number";
+    public static final String COL_1="Name";
+    public static final String COL_2="Number";
 
 
     Context context;
@@ -26,7 +27,7 @@ public class Holder extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE " + TableName + " (Id INTEGER ,RunState INTEGER,CheckState INTEGER,Name TEXT,Number TEXT) ");
+        db.execSQL("CREATE TABLE " + TableName + " (Name TEXT,Number TEXT) ");
 
 
     }
@@ -37,31 +38,21 @@ public class Holder extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void initials(){
-        SQLiteDatabase db=this.getWritableDatabase();
-        ContentValues contentValues=new ContentValues();
-        contentValues.put(COL_1,0);
-        contentValues.put(COL_2,0);
-        contentValues.put(COL_3,0);
-        contentValues.put(COL_4,"");
-        contentValues.put(COL_5,"");
-        db.insert(TableName,null,contentValues);
-    }
 
-    public void UserData(String name ,String number){
+
+    public void UserData(UserData data){
 
         SQLiteDatabase db=this.getWritableDatabase();
         ContentValues contentValues=new ContentValues();
-        contentValues.put(COL_1,1);
-        contentValues.put(COL_4,name);
-        contentValues.put(COL_5,number);
+        contentValues.put(COL_1,data.getName());
+        contentValues.put(COL_2,data.getNumber());
         db.insert(TableName,null,contentValues);
 
 
     }
-    public void Delete_Single_Number(String number){
+    public void Delete_Single_Number(String number ,String name){
         SQLiteDatabase db=this.getWritableDatabase();
-        String SQL="DELETE Name,Number FROM "+TableName+" WHERE Number='"+number+"'";
+        String SQL="DELETE FROM "+TableName+" WHERE Number='"+number+"'"+" AND Name='"+name+"'";
         db.execSQL(SQL);
 
 
@@ -69,39 +60,22 @@ public class Holder extends SQLiteOpenHelper {
 
     public void Delete_All_Number(){
         SQLiteDatabase db=this.getWritableDatabase();
-        String SQL="DELETE FROM "+TableName+" WHERE Id="+1;
+        String SQL="DELETE FROM "+TableName;
         db.execSQL(SQL);
 
 
     }
-    public  Cursor getRunState(){
-        SQLiteDatabase db=this.getWritableDatabase();
 
-        String SQL="SELECT RunState FROM "+TableName;
-        Cursor cursor=db.rawQuery(SQL,null);
-        return cursor;
-    }
 
     public  Cursor getData(){
         SQLiteDatabase db=this.getWritableDatabase();
 
-        String SQL="SELECT Id,CheckState,Name,Number FROM "+TableName;
+        String SQL="SELECT Name,Number FROM "+TableName;
         Cursor cursor=db.rawQuery(SQL,null);
         return cursor;
     }
-    public void updateRunState(int value){
 
-        SQLiteDatabase db=this.getWritableDatabase();
-        String SQL="UPDATE "+TableName+" SET RunState ="+value+" WHERE Id="+0;
-        db.execSQL(SQL);
-    }
 
-    public void updateCheckState(int value){
-
-        SQLiteDatabase db=this.getWritableDatabase();
-        String SQL="UPDATE "+TableName+" SET CheckState ="+value+" WHERE Id="+0;
-        db.execSQL(SQL);
-    }
 
 
 }

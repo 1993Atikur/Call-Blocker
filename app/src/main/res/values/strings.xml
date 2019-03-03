@@ -2,6 +2,7 @@
     <string name="app_name">Call Blocker</string>
     <string name="number">+Number</string>
     <string name="clear">Clear</string>
+    <string name="phone">Phonebook</string>
     <string name="all_calls">All Calls</string>
     <string name="rejected_calls">Rejected Calls</string>
 </resources>

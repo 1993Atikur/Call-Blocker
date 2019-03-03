@@ -44,8 +44,8 @@
                             android:id="@+id/tablayout"
                             app:tabGravity="fill"
                             app:tabIndicatorColor="@color/red"
-                            app:tabTextColor="@android:color/white"
-                            app:tabSelectedTextColor="@color/red"/>
+                            app:tabTextColor="@color/red"
+                            app:tabSelectedTextColor="@android:color/white"/>
 
 
 
