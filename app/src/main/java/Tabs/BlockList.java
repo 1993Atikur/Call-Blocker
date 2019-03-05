@@ -2,6 +2,7 @@ package Tabs;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -10,7 +11,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,18 +21,21 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ListView;
+
 import java.util.ArrayList;
+
 import Adapters.CustomList;
+import Data.UserData;
 import Database.Holder;
 import Database.State;
-import UserDataModel.UserData;
 import spark.loop.callblocker.Permission;
 import spark.loop.callblocker.R;
+
 import static android.Manifest.permission.READ_CONTACTS;
 import static android.Manifest.permission.READ_CALL_LOG;
 
 @SuppressLint("ValidFragment")
-public class BlockList extends Fragment implements View.OnClickListener , Permission {
+public class BlockList extends Fragment implements View.OnClickListener, Permission {
     View view;
     Context context;
     Dialog dialog;
@@ -44,7 +47,8 @@ public class BlockList extends Fragment implements View.OnClickListener , Permis
     Button AddNumber, ClearList, Save, cancel, Choose;
     EditText editname, editnumber;
     ArrayList<UserData> items;
-    int var = -1, id;
+    int var = -1;
+    boolean permission;
 
     public BlockList(Context context) {
         this.context = context;
@@ -151,11 +155,12 @@ public class BlockList extends Fragment implements View.OnClickListener , Permis
                 dialog.dismiss();
                 break;
             case R.id.choose:
-                if (hasPermission()){
-                    LogContact logContact = new LogContact(context);
+                if (permission) {
+                    LogContact logContact = new LogContact(context,items,customList,holder);
                     logContact.show(getChildFragmentManager(), "frag");
-                }else {
-                 requestPermissions(new String[]{READ_CONTACTS,READ_CALL_LOG},1);
+                } else {
+                    requestPermissions(new String[]{READ_CONTACTS, READ_CALL_LOG}, 1);
+                    permission=hasPermission();
                 }
                 break;
         }
@@ -164,16 +169,18 @@ public class BlockList extends Fragment implements View.OnClickListener , Permis
 
     @Override
     public boolean hasPermission() {
-        int contacts= ContextCompat.checkSelfPermission(context,READ_CONTACTS);
-        int calllog=ContextCompat.checkSelfPermission(context,READ_CALL_LOG);
-        return ((contacts==PackageManager.PERMISSION_GRANTED)&&(calllog==PackageManager.PERMISSION_GRANTED));
+        int contacts = ContextCompat.checkSelfPermission(context, READ_CONTACTS);
+        int calllog = ContextCompat.checkSelfPermission(context, READ_CALL_LOG);
+        return ((contacts == PackageManager.PERMISSION_GRANTED) && (calllog == PackageManager.PERMISSION_GRANTED));
     }
+
 
 
     public class BackgroundTask extends AsyncTask<String, String, String> {
 
         @Override
         protected String doInBackground(String... strings) {
+            permission=hasPermission();
             state = new State(context);
             holder = new Holder(context);
             cursor = holder.getData();

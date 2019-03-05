@@ -6,9 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.util.ArrayList;
-
-import UserDataModel.UserData;
+import Data.UserData;
 
 public class Holder extends SQLiteOpenHelper {
 

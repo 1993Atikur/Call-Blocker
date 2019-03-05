@@ -4,14 +4,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 import java.util.ArrayList;
 
 import Database.Holder;
-import UserDataModel.UserData;
+import Data.UserData;
 import spark.loop.callblocker.R;
 
 public class CustomList extends BaseAdapter {
@@ -28,6 +27,7 @@ public class CustomList extends BaseAdapter {
 
     public void setData(ArrayList<UserData>item){
         this.item=item;
+        notifyDataSetChanged();
     }
 
     @Override

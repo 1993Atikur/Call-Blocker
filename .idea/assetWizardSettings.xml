@@ -18,7 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/mnt/Software/Software/Linux_Soft/android-studio/plugins/android/lib/android.jar!/images/material_design_icons/action/ic_perm_device_information_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/mnt/Software/Software/Linux_Soft/android-studio/plugins/android/lib/android.jar!/images/material_design_icons/communication/ic_call_missed_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -28,8 +28,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="color" value="ff0203" />
-                            <entry key="outputName" value="infos" />
+                            <entry key="color" value="d9120d" />
+                            <entry key="outputName" value="call_missed" />
                             <entry key="overrideSize" value="true" />
                             <entry key="sourceFile" value="$USER_HOME$" />
                           </map>
