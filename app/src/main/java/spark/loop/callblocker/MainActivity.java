@@ -1,134 +1,147 @@
 package spark.loop.callblocker;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
+
 import Adapters.PagerAdapter;
+import Data.Permission;
 import Database.State;
-import Tabs.BlockList;
-import Tabs.History;
 
 import static android.Manifest.permission.CALL_PHONE;
 import static android.Manifest.permission.READ_PHONE_STATE;
 
-public class MainActivity extends AppCompatActivity implements Permission {
+public class MainActivity extends AppCompatActivity implements Permission, CompoundButton.OnCheckedChangeListener, View.OnClickListener {
     Switch switchButton;
     TabLayout tabLayout;
     ViewPager viewPager;
     Button Information;
     Intent intent;
     State state;
-    Cursor cursor;
-    int var = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         state = new State(MainActivity.this);
-        var = value();
-        BackGroundTask task = new BackGroundTask();
         setContentView(R.layout.activity_main);
         switchButton = findViewById(R.id.switchbutton);
+        switchButton.setOnCheckedChangeListener(this);
         tabLayout = findViewById(R.id.tablayout);
         viewPager = findViewById(R.id.viewPager);
         Information = findViewById(R.id.informaion);
-        PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager());
-        pagerAdapter.AddTab(new BlockList(MainActivity.this), "Blocked");
-        pagerAdapter.AddTab(new History(MainActivity.this), "History");
-
+        Information.setOnClickListener(this);
+        PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(), this);
         viewPager.setAdapter(pagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.getTabAt(0).setIcon(R.drawable.block);
         tabLayout.getTabAt(1).setIcon(R.drawable.history);
-
-
         intent = new Intent(MainActivity.this, BlockerService.class);
-
-
-        if (var == 0) {
-            switchButton.setChecked(false);
-            switchButton.setText("Disabled");
-        } else if (var == 1) {
+        if (state.isRunning()) {
             switchButton.setChecked(true);
             switchButton.setText("Enabled ");
+            startService(intent);
         } else {
-            task.execute();
+            switchButton.setChecked(false);
+            switchButton.setText("Disabled");
         }
-
-
-        switchButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-
-
-                    if (hasPermission()) {
-                        buttonView.setText("Enabled ");
-                        state.updateRunState(1);
-                        startService(intent);
-                    } else {
-                        //Request For Permission
-                        ActivityCompat.requestPermissions(MainActivity.this, new String[]{READ_PHONE_STATE, CALL_PHONE}, 1);
-
-                        buttonView.setText("Disabled");
-                        buttonView.setChecked(false);
-                    }
-
-                } else {
-                    state.updateRunState(0);
-                    buttonView.setText("Disabled");
-                    stopService(intent);
-                }
-            }
-        });
-
-
-        Information.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Processing", Toast.LENGTH_SHORT).show();
-            }
-        });
 
     }
 
-    private int value() {
-        cursor = state.getRunState();
-        int v = -1;
-        while (cursor.moveToNext()) {
-            v = cursor.getInt(0);
-        }
-        return v;
+
+    @Override
+    public boolean hasPermission1() {
+        return (ContextCompat.checkSelfPermission(getApplicationContext(), READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED);
+    }
+
+
+    @Override
+    public boolean hasPermission2() {
+        return (ContextCompat.checkSelfPermission(getApplicationContext(), CALL_PHONE) == PackageManager.PERMISSION_GRANTED);
     }
 
     @Override
-    public boolean hasPermission() {
-        int read_phone_state = ContextCompat.checkSelfPermission(getApplicationContext(), READ_PHONE_STATE);
-        int call_phone = ContextCompat.checkSelfPermission(getApplicationContext(), CALL_PHONE);
-        return ((read_phone_state == PackageManager.PERMISSION_GRANTED) && (call_phone == PackageManager.PERMISSION_GRANTED));
-    }
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if (isChecked) {
+            if (hasPermission1() & hasPermission2()) {
+                Enable();
 
-    public class BackGroundTask extends AsyncTask<String, String, String> {
-        @Override
-        protected String doInBackground(String... strings) {
-            state.initials();
+            } else if (!hasPermission1() & hasPermission2()) {
 
-            return null;
+                ActivityCompat.requestPermissions(MainActivity.this, new String[]{READ_PHONE_STATE}, 1);
+            } else if (hasPermission1() & !hasPermission2()) {
+
+                ActivityCompat.requestPermissions(MainActivity.this, new String[]{CALL_PHONE}, 2);
+            } else {
+
+                ActivityCompat.requestPermissions(MainActivity.this, new String[]{READ_PHONE_STATE, CALL_PHONE}, 3);
+            }
+
+        } else {
+            switchButton.setChecked(false);
+            switchButton.setText("Disabled");
+            state.updateRunState(0);
+            stopService(intent);
+
         }
     }
 
 
+    @Override
+    public void onClick(View v) {
+    }
 
+    public void Enable() {
+
+        switchButton.setChecked(true);
+        switchButton.setText("Enabled ");
+        startService(intent);
+        state.updateRunState(1);
+    }
+
+    public void Disable() {
+        switchButton.setChecked(false);
+        switchButton.setText("Disabled");
+        state.updateRunState(0);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        switch (requestCode) {
+            case 1:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                    Enable();
+                else
+                    Disable();
+                break;
+            case 2:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                    Enable();
+                else
+                    Disable();
+                break;
+            case 3:
+                boolean Phonestate = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                boolean Callstate = grantResults[1] == PackageManager.PERMISSION_GRANTED;
+                if (Phonestate && Callstate) {
+                    Enable();
+                } else {
+                    Disable();
+                }
+                break;
+        }
+    }
 }

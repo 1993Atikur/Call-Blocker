@@ -40,27 +40,29 @@
             android:textAllCaps="false"
             android:background="@drawable/buttonback"
             android:textSize="11sp"
+            android:id="@+id/clearCallHistory"
             android:layout_weight="3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/clear"
-          />
+            />
 
 
     </LinearLayout>
 
 
-        <ListView
-            android:layout_below="@+id/line2"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:background="@drawable/listback"
-            android:id="@+id/callHistorylist"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+    <android.support.v7.widget.RecyclerView
+        android:padding="10dp"
+        android:layout_below="@+id/line2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/listback"
+        android:id="@+id/callHistorylist"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 
 

@@ -43,6 +43,7 @@
                             app:tabIconTintMode="multiply"
                             android:id="@+id/tablayout"
                             app:tabGravity="fill"
+                            app:tabMaxWidth="0dp"
                             app:tabIndicatorColor="@color/red"
                             app:tabTextColor="@color/red"
                             app:tabSelectedTextColor="@android:color/white"/>

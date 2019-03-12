@@ -26,35 +26,13 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:text="A.Z Pallob"
-        android:textSize="17sp"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/callDate"
         app:layout_constraintStart_toEndOf="@+id/type"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/callNumber"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="01521504116"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/calltype"
-        app:layout_constraintStart_toEndOf="@+id/type"
-        app:layout_constraintTop_toBottomOf="@+id/callName" />
-
-    <TextView
-        android:id="@+id/calltype"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="2dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/callcheckBox"
-        app:layout_constraintStart_toEndOf="@+id/callNumber"
-        app:layout_constraintTop_toBottomOf="@+id/callDate" />
 
     <CheckBox
         android:id="@+id/callcheckBox"
@@ -67,18 +45,18 @@
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/calltype"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/callDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="2dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:gravity="center"
         android:text="12/3/2019"
         android:textSize="11sp"
-        app:layout_constraintBottom_toTopOf="@+id/calltype"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/callcheckBox"
         app:layout_constraintStart_toEndOf="@+id/callName"
         app:layout_constraintTop_toTopOf="parent" />

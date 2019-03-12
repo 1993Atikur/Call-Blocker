@@ -5,36 +5,35 @@
     build-mode="COLD"
     density="xhdpi"
     format="10"
-    ir-eligibility="METHOD_DELETED"
     plugin-version="3.3.1"
-    timestamp="1551747145691"
+    timestamp="1552363711371"
     token="-4264789781557660993"
     verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="120" />
+        duration="0" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="45" />
+        duration="0" />
     <task
         name="verifier"
-        duration="3" />
+        duration="0" />
 
-    <artifact
-        location="/mnt/Software/Software/Project/CallBlocker/app/build/intermediates/split-apk/debug/slices/slice_0.apk"
-        type="SPLIT" />
     <artifact
         location="/mnt/Software/Software/Project/CallBlocker/app/build/intermediates/instant-run-apk/debug/app-debug.apk"
         type="SPLIT_MAIN" />
 
     <build
         build-mode="FULL"
-        timestamp="1551746026159"
+        timestamp="1552360130167"
         verifier="FULL_BUILD_REQUESTED" >
+        <artifact
+            location="/mnt/Software/Software/Project/CallBlocker/app/build/intermediates/instant-run-apk/debug/app-debug.apk"
+            type="SPLIT_MAIN" />
         <artifact
             location="/mnt/Software/Software/Project/CallBlocker/app/build/intermediates/split-apk/debug/slices/slice_5.apk"
             type="SPLIT" />
@@ -68,27 +67,41 @@
         <artifact
             location="/mnt/Software/Software/Project/CallBlocker/app/build/intermediates/split-apk/debug/slices/slice_9.apk"
             type="SPLIT" />
+    </build>
+    <build
+        build-mode="COLD"
+        ir-eligibility="R_CLASS_CHANGE"
+        timestamp="1552360606394"
+        verifier="COLD_SWAP_REQUESTED" >
         <artifact
-            location="/mnt/Software/Software/Project/CallBlocker/app/build/intermediates/instant-run-apk/debug/app-debug.apk"
-            type="SPLIT_MAIN" />
+            location="/mnt/Software/Software/Project/CallBlocker/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
+            type="SPLIT" />
+        <artifact
+            location="/mnt/Software/Software/Project/CallBlocker/app/build/intermediates/split-apk/debug/slices/slice_2.apk"
+            type="SPLIT" />
     </build>
     <build
         build-mode="COLD"
         ir-eligibility="COMPATIBLE"
-        timestamp="1551747076647"
+        timestamp="1552360766085"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
-            location="/mnt/Software/Software/Project/CallBlocker/app/build/intermediates/instant-run-apk/debug/app-debug.apk"
-            type="SPLIT_MAIN" />
+            location="/mnt/Software/Software/Project/CallBlocker/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
+            type="SPLIT" />
     </build>
     <build
         build-mode="COLD"
-        ir-eligibility="METHOD_DELETED"
-        timestamp="1551747145691"
+        ir-eligibility="COMPATIBLE"
+        timestamp="1552363335246"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="/mnt/Software/Software/Project/CallBlocker/app/build/intermediates/split-apk/debug/slices/slice_0.apk"
             type="SPLIT" />
+    </build>
+    <build
+        build-mode="COLD"
+        timestamp="1552363711371"
+        verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="/mnt/Software/Software/Project/CallBlocker/app/build/intermediates/instant-run-apk/debug/app-debug.apk"
             type="SPLIT_MAIN" />

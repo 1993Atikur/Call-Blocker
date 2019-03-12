@@ -2,10 +2,8 @@ package Tabs;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -21,112 +19,87 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import Adapters.CustomList;
+import Data.Permission;
+import Data.User;
 import Data.UserData;
 import Database.Holder;
 import Database.State;
-import spark.loop.callblocker.Permission;
 import spark.loop.callblocker.R;
 
-import static android.Manifest.permission.READ_CONTACTS;
 import static android.Manifest.permission.READ_CALL_LOG;
+import static android.Manifest.permission.READ_CONTACTS;
 
 @SuppressLint("ValidFragment")
-public class BlockList extends Fragment implements View.OnClickListener, Permission {
-    View view;
+public class BlockList extends Fragment implements View.OnClickListener, Permission, User, CompoundButton.OnCheckedChangeListener {
     Context context;
     Dialog dialog;
     CustomList customList;
-    ListView listView;
     Holder holder;
     State state;
-    Cursor cursor;
-    Button AddNumber, ClearList, Save, cancel, Choose;
     EditText editname, editnumber;
     ArrayList<UserData> items;
-    int var = -1;
-    boolean permission;
+    BackgroundTask task;
 
     public BlockList(Context context) {
         this.context = context;
         items = new ArrayList<>();
-        BackgroundTask task = new BackgroundTask();
+        task = new BackgroundTask();
         task.execute();
+
 
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.blocklist, container, false);
-        listView = view.findViewById(R.id.blockList);
-        FunctionsOfButton();
-        LoadList();
-        return view;
-    }
-
-
-    public void LoadList() {
-
-
-        customList = new CustomList(context);
-        customList.setData(items);
-        listView.setAdapter(customList);
-
-
-    }
-
-    public void FunctionsOfButton() {
-        AddNumber = view.findViewById(R.id.addNumber);
-        ClearList = view.findViewById(R.id.clearList);
-        Choose = view.findViewById(R.id.choose);
+        View view = inflater.inflate(R.layout.blocklist, container, false);
+        ListView listView = view.findViewById(R.id.blockList);
+        Button AddNumber = view.findViewById(R.id.addNumber);
+        Button ClearList = view.findViewById(R.id.clearList);
+        CheckBox checkBox = view.findViewById(R.id.checkBox);
+        Button Choose = view.findViewById(R.id.choose);
         AddNumber.setOnClickListener(this);
         ClearList.setOnClickListener(this);
         Choose.setOnClickListener(this);
+        checkBox.setOnCheckedChangeListener(this);
 
-        CheckBox checkBox = view.findViewById(R.id.checkBox);
-        cursor = state.getCheckState();
-        while (cursor.moveToNext()) {
-            var = cursor.getInt(0);
-        }
-
-        if (var == 1) {
+        if (state.isChecked()) {
             checkBox.setChecked(true);
         } else {
             checkBox.setChecked(false);
         }
-
-        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-                if (isChecked) {
-                    state.updateCheckState(1);
-                } else {
-                    state.updateCheckState(0);
-
-                }
-
-            }
-        });
-
-
+        customList.setData(items);
+        listView.setAdapter(customList);
+        return view;
     }
+
 
     public void AddNumber() {
         dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.insertnumber);
-        Save = dialog.findViewById(R.id.save);
+        Button Save = dialog.findViewById(R.id.save);
         editname = dialog.findViewById(R.id.editname);
         editnumber = dialog.findViewById(R.id.editnumber);
-        cancel = dialog.findViewById(R.id.cancel);
+        Button cancel = dialog.findViewById(R.id.cancel);
         Save.setOnClickListener(this);
         cancel.setOnClickListener(this);
         dialog.show();
+
+
+    }
+
+    @Override
+    public void Details(String name, String number, String incomingNumber) {
+        if (!name.equals("-1") & !number.equals("-1")) {
+            items.add(new UserData(name, number));
+            customList.notifyDataSetChanged();
+        }
 
 
     }
@@ -145,52 +118,115 @@ public class BlockList extends Fragment implements View.OnClickListener, Permiss
                 holder.Delete_All_Number();
                 break;
             case R.id.save:
-                UserData data = new UserData(editname.getText().toString(), editnumber.getText().toString());
-                items.add(data);
-                holder.UserData(data);
-                customList.notifyDataSetChanged();
-                dialog.dismiss();
+                String ed1, ed2;
+                ed1 = editname.getText().toString().trim();
+                ed2 = editnumber.getText().toString().trim();
+                if (!ed2.isEmpty()) {
+                    if (ed1.isEmpty()) {
+                        ed1 = "Unkonwn";
+                    }
+                    UserData data = new UserData(ed1, ed2);
+                    items.add(data);
+                    customList.notifyDataSetChanged();
+                    holder.UserData(data);
+                    dialog.dismiss();
+                }
+
+
                 break;
             case R.id.cancel:
                 dialog.dismiss();
                 break;
             case R.id.choose:
-                if (permission) {
-                    LogContact logContact = new LogContact(context,items,customList,holder);
-                    logContact.show(getChildFragmentManager(), "frag");
-                } else {
-                    requestPermissions(new String[]{READ_CONTACTS, READ_CALL_LOG}, 1);
-                    permission=hasPermission();
+                if (hasPermission1() & hasPermission2()) {
+                    Call();
+                } else if (!hasPermission1() & hasPermission2()) {
+                    requestPermissions(new String[]{READ_CONTACTS}, 3);
+
+                } else if (hasPermission1() & !hasPermission2()) {
+                    requestPermissions(new String[]{READ_CALL_LOG}, 2);
+
+                } else{
+                requestPermissions(new String[]{READ_CONTACTS, READ_CALL_LOG}, 3);
+
                 }
+
                 break;
         }
 
     }
 
-    @Override
-    public boolean hasPermission() {
-        int contacts = ContextCompat.checkSelfPermission(context, READ_CONTACTS);
-        int calllog = ContextCompat.checkSelfPermission(context, READ_CALL_LOG);
-        return ((contacts == PackageManager.PERMISSION_GRANTED) && (calllog == PackageManager.PERMISSION_GRANTED));
+    public void Call() {
+        LogContact logContact = new LogContact(context, items, customList, holder);
+        logContact.show(getChildFragmentManager(), "frag");
+
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+
+            case 1:
+                if(grantResults[0]==PackageManager.PERMISSION_GRANTED)
+                    Call();
+                else
+                    Toast.makeText(context, "Allow Contact Permission", Toast.LENGTH_SHORT).show();
+                    break;
+            case 2:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                    Call();
+                else
+                    Toast.makeText(context, "Allow Phone Calls Permission", Toast.LENGTH_SHORT).show();
+                break;
+
+            case 3:
+                boolean contacts = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                boolean calllog = grantResults[1] == PackageManager.PERMISSION_GRANTED;
+                if (contacts && calllog) {
+                    Call();
+                }
+                else
+                    Toast.makeText(context, "Permissions Required", Toast.LENGTH_SHORT).show();
+
+                break;
+        }
+    }
+
+    @Override
+    public boolean hasPermission1() {
+        return (ContextCompat.checkSelfPermission(context, READ_CONTACTS) == PackageManager.PERMISSION_GRANTED);
+
+    }
+
+    @Override
+    public boolean hasPermission2() {
+        return (ContextCompat.checkSelfPermission(context, READ_CALL_LOG) == PackageManager.PERMISSION_GRANTED);
+    }
+
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if (isChecked) {
+            state.updateCheckState(1);
+        } else {
+            state.updateCheckState(0);
+
+        }
+
+    }
 
 
     public class BackgroundTask extends AsyncTask<String, String, String> {
 
+
         @Override
         protected String doInBackground(String... strings) {
-            permission=hasPermission();
+            customList = new CustomList(context);
             state = new State(context);
             holder = new Holder(context);
-            cursor = holder.getData();
-            while (cursor.moveToNext()) {
-                items.add(new UserData(cursor.getString(0), cursor.getString(1)));
-            }
-
+            holder.getData(BlockList.this, "");
             return null;
         }
-
 
     }
 

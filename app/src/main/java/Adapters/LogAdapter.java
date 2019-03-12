@@ -43,9 +43,7 @@ public class LogAdapter extends RecyclerView.Adapter<LogAdapter.CallLogHolder> {
     @Override
     public void onBindViewHolder(@NonNull CallLogHolder callLogHolder, int i) {
 
-        callLogHolder.Name.setText(data.get(i).getName());
-        callLogHolder.Number.setText(data.get(i).getNumber());
-        callLogHolder.Type.setText(data.get(i).getType());
+        callLogHolder.Name.setText(data.get(i).getName()+"\n"+data.get(i).getNumber());
         callLogHolder.CallDate.setText(data.get(i).getDate());
         callLogHolder.keep(i);
     }
@@ -69,8 +67,6 @@ public class LogAdapter extends RecyclerView.Adapter<LogAdapter.CallLogHolder> {
         public CallLogHolder(@NonNull View itemView) {
             super(itemView);
             Name = itemView.findViewById(R.id.callName);
-            Number = itemView.findViewById(R.id.callNumber);
-            Type = itemView.findViewById(R.id.calltype);
             CallDate= itemView.findViewById(R.id.callDate);
             checkBox = itemView.findViewById(R.id.callcheckBox);
             itemView.setOnClickListener(this);

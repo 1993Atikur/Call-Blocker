@@ -7,15 +7,25 @@ import spark.loop.callblocker.R;
 
 public class UserData {
 
-    String Name, Number,date,Type;
+    String Name, Number,date,Type,historydate;
     int type;
+
+    public UserData() {
+
+    }
 
     public UserData(String Name, String Number) {
         this.Name = Name;
         this.Number = Number;
     }
 
-    public UserData(String name, String number, int type,long date) {
+    public UserData(String Name,String Number,String historydate) {
+        this.Name=Name;
+        this.Number=Number;
+        this.historydate=historydate;
+    }
+
+    public UserData(String name, String number, int type, long date) {
         if (name==null){
             this.Name ="Unknown";
         }else {
@@ -54,12 +64,13 @@ public class UserData {
         return Number;
     }
 
-    public String getType() {
-    return Type;
-    }
 
     public String getDate() {
 
-        return date;
+        return date+"\n"+Type;
+    }
+
+    public String getHistorydate() {
+        return historydate;
     }
 }

@@ -21,7 +21,7 @@
     <EditText
         android:inputType="phone"
         android:textStyle="italic"
-        android:hint="Numbers"
+        android:hint="Number Starting With"
         android:id="@+id/editnumber"
         android:layout_alignParentRight="true"
         android:layout_alignParentLeft="true"
